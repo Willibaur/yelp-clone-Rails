@@ -32,4 +32,12 @@ feature 'reviewing' do
     expect(current_path).to eq '/restaurants'
     expect(page).to have_content('has reviewed this restaurant already')
   end
+
+  scenario 'displays an average rating for all reviews' do
+    leave_review('So so', '3')
+    click_link 'Sign out'
+    sign_up_user2
+    leave_review('Great', '5')
+    expect(page).to have_content("Average rating: ★★★★☆")
+  end
 end
