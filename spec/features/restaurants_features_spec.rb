@@ -97,14 +97,13 @@ feature 'restaurants' do
     context 'when restaurant was created by the same user' do
       before { manually_create_restaurants }
 
-      scenario 'a user cannot edit a restaurant' do
+      scenario 'a user can edit a restaurant' do
         visit '/restaurants'
         click_link 'Edit KFC'
         fill_in 'Name', with: 'Kentucky Fried Chicken'
         click_button 'Update Restaurant'
-        expect(page).to have_content 'KFC'
+        expect(page).to have_content 'Kentucky Fried Chicken'
         expect(current_path).to eq '/restaurants'
-        expect(page).to have_content 'Only owners can edit'
       end
     end
   end
